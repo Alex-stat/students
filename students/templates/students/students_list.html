@@ -30,8 +30,7 @@
 						<!-- Logo -->
 						<div class="col-xs-8">
 							<h1> Cервіс обліку студентів</h1>
-						</div>
-
+						</div>b
 						<!-- Groups Selector -->
 						<div class="col-xs-4" id="group-selector">
 							<strong> Група </strong>
@@ -52,7 +51,7 @@
  	 				<ul class='nav nav-tabs' role="tablist">
  	 					<li role="presentation" class="active"> <a href="{% url "home" %}"> Студенти</a></li>
 	 	 				<li role="presentation"> <a href="/journal"> Відвідування</a> </li>		
- 		 				<li role="presentation"> <a href="/groups"> Групи</a></li>
+ 		 				<li role="presentation"> <a href="{% url "groups" %}"> Групи</a></li>
  	 				</ul>	
  	 			</div>
  	 	
@@ -78,7 +77,7 @@
 
  				<!-- Add Student Button -->
  				<div class="col-xs-4">
- 					<a class="btn btn-primary" href="/students/add">  Додати студента </a>
+ 					<a class="btn btn-primary" href="{% url "students_add" %}">  Додати студента </a>
  				</div>
 
  					<!-- Start Table -->
@@ -102,8 +101,8 @@
 									<td>1</td>
 									<td><img src="./img/2.png" height='30' width='30'
 											class="img-circle"></td>
-									<td><a href="students/1/edit> Пілонов</a></td>
-									<td><a href="/students/1/edit">Петро</a></td>
+									<td><a href="{% url "students_edit" 1 %}"> Пілонов</a></td>
+									<td><a href="{% url "students_edit" 1 %}">Петро</a></td>
 									<td>4329</td>
 									<td>
 										<div class="dropdown">
@@ -116,10 +115,10 @@
 													<a href="/journal/1"> Відвідування </style</a>
 												</li>
 												<li role="presentation"> 
-													<a href='/students/1/edit'> Редагувати</a>
+													<a href="{% url "students_edit" 1 %}"> Редагувати</a>
 												</li>
 												<li role="presentation">
-													<a href="/students/1/delete"> Видалити </a>
+													<a href="{% url "students_delete" 1 %}"> Видалити </a>
 												</li>
 											</ul>
 										</div>
