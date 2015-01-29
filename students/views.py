@@ -1,10 +1,31 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
 #Views for Student
 
 def students_list(request):
-	return render(request, 'students/students_list.html', {})
+	students = (
+		{'id':1, 
+		'first_name': u'Петро',
+		'last_name': u'Пілонов',
+		'ticket': 235,
+		'image': 'img/1.png'},
+		{'id': 2, 
+		'first_name': u'Андрій',
+		'last_name': u'Корост',
+		'ticket': 2123,
+		'image': 'img/2.png'},
+		{'id': 3, 
+		'first_name': u'Олександр',
+		'last_name': u'Кірєв',
+		'ticket': 3476,
+		'image': 'img/s4.png'}
+		)
+
+	return render(request, 'students/students_list.html', 
+		{'students': students})
 
 def students_add(request):
 	return HttpResponse('<h1> Student Add Form </h1>')

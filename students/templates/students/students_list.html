@@ -1,7 +1,8 @@
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
 <html lang="uk">
- 
- 	<head>
+	<head>
 		<meta charset="UTF-8"/>
 		<title> Сервіс обліку студентів</title>
 		<meta name="description"
@@ -11,7 +12,8 @@
  		<link rel="stylesheet"
  			  href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 
- 		<link rel="stylesheet" href="./css/main.css">
+ 		<link rel="stylesheet" 
+ 				href="{% static "css/main.css" %}">
 	 	
  	</head>
 
@@ -97,13 +99,21 @@
 								</tr>
 							</thead>
 							<tbody>
+								{% for student in students %}
 								<tr>
-									<td>1</td>
-									<td><img src="./img/2.png" height='30' width='30'
-											class="img-circle"></td>
-									<td><a href="{% url "students_edit" 1 %}"> Пілонов</a></td>
-									<td><a href="{% url "students_edit" 1 %}">Петро</a></td>
-									<td>4329</td>
+									<td> {{ forloop.counter }} </td>
+									<td>
+										<img class="img-circle" src="{% static student.image %}" height='30' width='30'>
+									</td>
+									<td>
+										<a href="{% url "students_edit" student.id %}"> 
+										{{ student.last_name }}</a>
+									</td>
+									<td>
+										<a href="{% url "students_edit" student.id %}">
+										{{ student.first_name }}</a>
+									</td>
+									<td> {{ student.ticket }}</td>
 									<td>
 										<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle"
@@ -112,72 +122,21 @@
 											</button>
 											<ul class="dropdown-menu" role="menu">
 												<li role="presentation">
-													<a href="/journal/1"> Відвідування </style</a>
+													<a href="/journal/{{ student.id }}"> Відвідування </style</a>
 												</li>
 												<li role="presentation"> 
-													<a href="{% url "students_edit" 1 %}"> Редагувати</a>
+													<a href="{% url "students_edit" student.id %}"> Редагувати</a>
 												</li>
 												<li role="presentation">
-													<a href="{% url "students_delete" 1 %}"> Видалити </a>
+													<a href="{% url "students_delete" student.id %}"> Видалити </a>
 												</li>
 											</ul>
 										</div>
 									</td>
 								</tr>	
-								<tr>
-									<td>2</td>
-									<td><img src="./img/1.png" height='30' width='30'
-											class="img-circle"></td>
-									<td><a title="Редагувати" href="/students/2/edit">Корост</a></td>
-									<td><a title="Редагувати" href="/students/2/edit">Андрій</a></td>
-									<td> 2123</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle"
-													type="button" data-toggle="dropdown">Дія
-												<span class="caret"> </span>
-											</button>
-											<ul class="dropdown-menu" role="menu">
-												<li role="presentation">
-													<a href="/journal/2"> Відвідування </style</a>
-												</li>
-												<li role="presentation"> <a href='/students/2/edit'>Редагувати</a>
-												</li>
-												<li role="presentation">
-													<a href="/students/2/delete"> Видалити </a>
-												</li>
-											</ul>
-										</div>
-									</td>		
-								</tr>
-								<tr>
-									<td>3</td>
-									<td><img src="./img/s4.png" height='30' width='30'
-											class="img-circle"></td>
-									<td><a title="Редагувати" href="/students/3/edit">Анисов</a></td>
-									<td><a title="Редагувати" href="/students/3/edit">Сергій</a></td>
-									<td>5121</td>
-									<td>
 
-										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle"
-													type="button" data-toggle="dropdown">Дія
-												<span class="caret"> </span>
-											</button>
-											<ul class="dropdown-menu" role="menu">
-												<li role="presentation">
-													<a href="/journal/3"> Відвідування </style</a>
-												</li>
-												<li role="presentation"> <a href='/students/3/edit'>Редагувати</a>
-												</li>
-												<li role="presentation">
-													<a href="/students/3/delete"> Видалити </a>
-												</li>
-											</ul>
-										</div>
-
-									</td>
-								</tr>
+								
+								{% endfor %}
 							</tbody>
 						</table>	
 					
